@@ -1,0 +1,87 @@
+[gd_scene load_steps=11 format=3 uid="uid://cpnp7su1o55sk"]
+
+[ext_resource type="Script" path="res://Scenes/Actors/Test Enemy 01/TestEnemy_01.gd" id="1_diega"]
+[ext_resource type="PackedScene" uid="uid://cuquf2p4w3yt5" path="res://Scenes/Weapons/Projectile Pistol/Projectile_Pistol.tscn" id="2_12akb"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bsdjn"]
+albedo_color = Color(0.419608, 0.654902, 0.980392, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_5t6sj"]
+material = SubResource("StandardMaterial3D_bsdjn")
+radius = 0.1
+height = 0.335
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_m6mpl"]
+size = Vector3(1, 2.5, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d2pnv"]
+albedo_color = Color(0.329412, 0.796078, 0.803922, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_yh508"]
+material = SubResource("StandardMaterial3D_d2pnv")
+size = Vector3(1, 2.5, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_tbmiw"]
+radius = 12.0
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_lryri"]
+height = 0.1
+radius = 0.7
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_151ky"]
+radius = 5.0
+
+[node name="TestEnemy01" type="CharacterBody3D" groups=["Enemy"]]
+rotation_edit_mode = 2
+script = ExtResource("1_diega")
+
+[node name="HeadGraphicsPos" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.89318, 0)
+
+[node name="Eye" type="MeshInstance3D" parent="HeadGraphicsPos"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12924, -0.579534)
+mesh = SubResource("CapsuleMesh_5t6sj")
+
+[node name="BodyCollision" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_m6mpl")
+
+[node name="BodyGraphics" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.997546, 0, 0, 0, 0.997546, 0, 0, 0, 0.997546, 0, 0, 0)
+mesh = SubResource("BoxMesh_yh508")
+
+[node name="Head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.89318, 0)
+
+[node name="WeaponHolder" type="Node3D" parent="Head"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.708966, -0.237873, -0.621309)
+
+[node name="Projectile_Pistol" parent="Head/WeaponHolder" instance=ExtResource("2_12akb")]
+projectile_speed = 50.0
+
+[node name="AimRayCast" type="RayCast3D" parent="Head"]
+target_position = Vector3(0, 0, 5)
+
+[node name="DetectionArea" type="Area3D" parent="Head"]
+
+[node name="DetectionSphere" type="CollisionShape3D" parent="Head/DetectionArea"]
+shape = SubResource("SphereShape3D_tbmiw")
+
+[node name="PhysicsBumper" type="ShapeCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.856854, 0)
+shape = SubResource("CylinderShape3D_lryri")
+target_position = Vector3(0, 0, 0)
+collision_mask = 3
+
+[node name="RotationHelper" type="Node3D" parent="."]
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="StopperArea" type="Area3D" parent="."]
+
+[node name="StopperSphere" type="CollisionShape3D" parent="StopperArea"]
+shape = SubResource("SphereShape3D_151ky")
+
+[connection signal="body_entered" from="Head/DetectionArea" to="." method="_on_detection_area_body_entered"]
+[connection signal="body_exited" from="Head/DetectionArea" to="." method="_on_detection_area_body_exited"]
+[connection signal="body_entered" from="StopperArea" to="." method="_on_stopper_area_body_entered"]
+[connection signal="body_exited" from="StopperArea" to="." method="_on_stopper_area_body_exited"]

@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://cuquf2p4w3yt5"]
+
+[ext_resource type="Script" path="res://Scenes/Weapons/Weapon.gd" id="1_fbdnd"]
+[ext_resource type="PackedScene" uid="uid://b543xrfrsgeqy" path="res://Scenes/Weapons/Projectile Bullet/Projectile_Bullet.tscn" id="2_68yh5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ilkbi"]
+size = Vector3(0.265, 0.242, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y7uqh"]
+albedo_color = Color(0.866667, 0.556863, 0.0627451, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_p2801"]
+material = SubResource("StandardMaterial3D_y7uqh")
+
+[node name="Projectile_Pistol" type="Area3D"]
+script = ExtResource("1_fbdnd")
+type = 1
+fire_rate = 500.0
+projectile = ExtResource("2_68yh5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_ilkbi")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.252951, 0, 0, 0, 0.206928, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_p2801")
+
+[node name="Muzzle" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.574322)

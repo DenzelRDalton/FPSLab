@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://b543xrfrsgeqy"]
+
+[ext_resource type="Script" path="res://Scenes/Weapons/Projectile Bullet/bullet.gd" id="1_faxkd"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_47rsn"]
+radius = 0.05
+height = 0.2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s0ci2"]
+albedo_color = Color(0.913725, 0.203922, 0.25098, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_78el2"]
+material = SubResource("StandardMaterial3D_s0ci2")
+radius = 0.05
+height = 0.2
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_826w4"]
+radius = 0.06
+height = 0.22
+
+[node name="Projectile_Bullet" type="RigidBody3D"]
+rotation_edit_mode = 2
+collision_layer = 0
+gravity_scale = 0.0
+script = ExtResource("1_faxkd")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0)
+rotation_edit_mode = 2
+shape = SubResource("CapsuleShape3D_47rsn")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0)
+rotation_edit_mode = 2
+mesh = SubResource("CapsuleMesh_78el2")
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0)
+rotation_edit_mode = 2
+collision_layer = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+rotation_edit_mode = 2
+shape = SubResource("CapsuleShape3D_826w4")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

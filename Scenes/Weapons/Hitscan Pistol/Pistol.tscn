@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://dyumdbvx72pp0"]
+
+[ext_resource type="Script" path="res://Scenes/Weapons/Weapon.gd" id="1_daog4"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tv8jt"]
+size = Vector3(0.265, 0.242, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_fjlb1"]
+
+[node name="Pistol" type="Area3D"]
+script = ExtResource("1_daog4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_tv8jt")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.252951, 0, 0, 0, 0.206928, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_fjlb1")
+
+[node name="Muzzle" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.574322)
