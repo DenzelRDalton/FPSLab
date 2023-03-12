@@ -58,9 +58,6 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.7089
 [node name="Projectile_Pistol" parent="Head/WeaponHolder" instance=ExtResource("2_12akb")]
 projectile_speed = 50.0
 
-[node name="AimRayCast" type="RayCast3D" parent="Head"]
-target_position = Vector3(0, 0, 5)
-
 [node name="DetectionArea" type="Area3D" parent="Head"]
 
 [node name="DetectionSphere" type="CollisionShape3D" parent="Head/DetectionArea"]

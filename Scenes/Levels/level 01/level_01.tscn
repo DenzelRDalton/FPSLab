@@ -19,7 +19,7 @@ polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(6, 5, 3), PackedInt32Arr
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5806, 0)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.870888, 0.491481, 0, -0.491481, 0.870888, 0.557549, 8.35583, -2.02813)
+transform = Transform3D(1, 0, 0, 0, 0.131772, 0.99128, 0, -0.99128, 0.131772, 0.557549, 8.35583, -2.02813)
 
 [node name="PhysicsCube" type="RigidBody3D" parent="."]
 process_mode = 4
