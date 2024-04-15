@@ -10,11 +10,13 @@ var held_object = null
 func _physics_process(delta):
 	if Input.is_action_just_pressed("interact"):
 		if held_object:
+			print("Object held")
 			held_object.gravity_scale = 1
 			held_object.lock_rotation = false
 			held_object.linear_damp = 0
 			held_object = null
 		elif object_detector.get_collider():
+			print("Trying to hold: " + str(object_detector.get_collider()))
 			held_object = object_detector.get_collider()
 			held_object.gravity_scale = 0
 			held_object.lock_rotation = true

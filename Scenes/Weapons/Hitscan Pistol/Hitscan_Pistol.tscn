@@ -1,14 +1,14 @@
 [gd_scene load_steps=4 format=3 uid="uid://dyumdbvx72pp0"]
 
-[ext_resource type="Script" path="res://Scenes/Weapons/Weapon.gd" id="1_daog4"]
+[ext_resource type="Script" path="res://Scenes/Weapons/Weapon.gd" id="1_hbfah"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tv8jt"]
 size = Vector3(0.265, 0.242, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_fjlb1"]
 
-[node name="Pistol" type="Area3D"]
-script = ExtResource("1_daog4")
+[node name="HitscanPistol" type="Area3D"]
+script = ExtResource("1_hbfah")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_tv8jt")

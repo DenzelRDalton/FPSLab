@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bmafdawdg1jm6"]
+
+[ext_resource type="PackedScene" uid="uid://5dqrtal6n3a2" path="res://Scenes/Actors/Actor Assets/Cone.glb" id="1_inr8v"]
+[ext_resource type="Shape3D" uid="uid://b1qjbu4403jkc" path="res://cone.tres" id="2_2gqh3"]
+
+[node name="Cone" instance=ExtResource("1_inr8v")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Cone2" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cone2/StaticBody3D" index="0"]
+shape = ExtResource("2_2gqh3")

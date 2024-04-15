@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://brnkk1tjydv2n"]
+[gd_scene load_steps=9 format=3 uid="uid://brnkk1tjydv2n"]
 
 [ext_resource type="Script" path="res://Scenes/Actors/Player/player.gd" id="1_ae3ra"]
 [ext_resource type="Script" path="res://Scenes/Actors/Player/holdObject.gd" id="2_q0nc6"]
+[ext_resource type="PackedScene" uid="uid://dyumdbvx72pp0" path="res://Scenes/Weapons/Hitscan Pistol/Hitscan_Pistol.tscn" id="3_uh2dn"]
 [ext_resource type="PackedScene" uid="uid://cuquf2p4w3yt5" path="res://Scenes/Weapons/Projectile Pistol/Projectile_Pistol.tscn" id="4_dsd2a"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tlxbc"]
@@ -60,9 +61,13 @@ target_position = Vector3(0, 1000, 0)
 [node name="WeaponHolder" type="Node3D" parent="Head"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.165831, -1.03294)
 
-[node name="Projectile_Pistol" parent="Head/WeaponHolder" instance=ExtResource("4_dsd2a")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.202476, 0, 0)
-damage = 50.0
+[node name="HitscanPistol" parent="Head/WeaponHolder" instance=ExtResource("3_uh2dn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.358997, 0, -0.193429)
+
+[node name="ProjectilePistol" parent="Head/WeaponHolder" instance=ExtResource("4_dsd2a")]
+process_mode = 4
+transform = Transform3D(-0.999857, 0, -0.0168939, 0, 1, 0, 0.0168939, 0, -0.999857, 0.358623, 0, -0.174397)
+visible = false
 
 [node name="PhysicsBumper" type="ShapeCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.856854, 0)
